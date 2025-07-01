@@ -1,0 +1,5 @@
+/* File: frontend/src/index.css */
+/* This file is used to import Tailwind CSS styles and custom styles. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
