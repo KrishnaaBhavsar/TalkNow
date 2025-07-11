@@ -6,10 +6,11 @@ import messageRoutes from './routes/message.js'
 import {connectDB} from './lib/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import { app,server } from './lib/socket.js';
 
 
+// deleting the app from here as we have already put in the socket.io file
 
-const app = express();
 
 
 const PORT= process.env.PORT ;
@@ -28,7 +29,12 @@ app.use("/api/auth",authRoutes);
 app.use("/api/messages",messageRoutes);
 
 
-app.listen(PORT,() => {
+
+//will change app with server we just have created at the socket io file
+server.listen(PORT,() => {
     console.log('Server is running on port :'+ PORT);  
     connectDB();
 });
+
+
+// want to use the socket then change the app. to server 

@@ -1,4 +1,4 @@
-import  { useEffect } from 'react'
+import  { useEffect, useRef } from 'react'
 import { useChatStore } from '../store/useChatStore'
 import ChatHeader from './ChatHeader.jsx';
 import MessageInput from './MessageInput.jsx';
@@ -11,12 +11,30 @@ import { useAuthStore } from '../store/useAuthStore.js';
 const ChatContainer = () => {
   // This component will display the chat messages and input area
 
-  const{messages,getMessages,isMessagesLoading,selectedUser}=useChatStore();
+  const{messages,getMessages,isMessagesLoading,selectedUser,subscribeToMessages,unsubscribeFromMessages}=useChatStore();
   const{authUser}=useAuthStore();
+
+  const messageEndRef=useRef(null);
 
   useEffect(()=>{
     getMessages(selectedUser._id);
-  } , [selectedUser._id,getMessages]);
+  // Subscribe to new messages when the selected user changes
+  subscribeToMessages();
+
+
+  return ()=>unsubscribeFromMessages();
+  // Cleanup function to unsubscribe from messages when the component unmounts or selectedUser changes
+
+    
+
+  } , [selectedUser._id,getMessages,subscribeToMessages,unsubscribeFromMessages]);
+
+  // Scroll to the bottom of the chat when new messages are received
+  useEffect(() => {
+    if (messageEndRef.current && messages) {
+      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  } , [messages]);
 
   if(isMessagesLoading){
     return (
@@ -38,6 +56,8 @@ const ChatContainer = () => {
          <div
             key={message._id}
             className={`chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
+
+            ref={messageEndRef}
             
           >
             <div className=" chat-image avatar">
