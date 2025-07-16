@@ -17,6 +17,7 @@ const ChatContainer = () => {
   const messageEndRef=useRef(null);
 
   useEffect(()=>{
+     if (!selectedUser?._id) return;
     getMessages(selectedUser._id);
   // Subscribe to new messages when the selected user changes
   subscribeToMessages();
