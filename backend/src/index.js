@@ -41,10 +41,6 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 
-app.use((req, res, next) => {
-  console.log("🚦 Request:", req.method, req.path);
-  next();
-});
 
 
 
