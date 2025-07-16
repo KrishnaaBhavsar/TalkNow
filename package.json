@@ -1,0 +1,23 @@
+{
+  "name": "talknow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build":"npm install --prefix backend && npm install --prefix frontend && npm run build --prefix backend && npm run build --prefix frontend",
+    "start": "npm run start --prefix backend && npm run start --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrishnaaBhavsar/TalkNow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KrishnaaBhavsar/TalkNow/issues"
+  },
+  "homepage": "https://github.com/KrishnaaBhavsar/TalkNow#readme",
+  "description": ""
+}
