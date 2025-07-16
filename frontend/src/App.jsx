@@ -4,7 +4,7 @@ import { Routes ,Route} from 'react-router-dom'
 import HomePage from './Pages/HomePage.jsx'
 import SignUpPage from './Pages/SignUpPage.jsx'
 import LoginPage from './Pages/LoginPage.jsx'
-import SettingsPage from './Pages/Settingspage.jsx'
+import SettingsPage from './Pages/SettingsPage.jsx'
 import ProfilePage from './Pages/ProfilePage.jsx'
 
 import { useAuthStore } from './store/useAuthStore.js'
